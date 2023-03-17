@@ -1,8 +1,11 @@
-const http = require("http");
 const express = require("express");
+const helmet = require("helmet");
+const http = require("http");
 const cors = require("cors");
 
 const app = express();
+
+app.use(helmet());
 
 const whiteList = ["http://localhost:3000"];
 
@@ -24,10 +27,15 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
+app.post("/", (req, res) => {
+  res.send("Hello World");
+});
+
 const server = http.createServer(app);
 
-const port = process.env.PORT || 6000;
+const port = process.env.PORT;
 
 server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+  console.log(`http://localhost:${port}`);
 });
