@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const auth = require("./middleware/auth");
 const express = require("express");
 const helmet = require("helmet");
-const path = require("path");
 const cors = require("cors");
 
 const app = express();
@@ -20,7 +19,7 @@ app.use(
   })
 );
 
-const whiteList = ["http://localhost:3000"];
+const whiteList = ["http://localhost:3000", "https://park-here.vercel.app"];
 
 const corsOptionsDelegate = function (req, callback) {
   let corsOptions;
