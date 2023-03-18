@@ -37,9 +37,11 @@ app.use(cors(corsOptionsDelegate));
 // Routes
 const signInRouter = require("./routes/signInRouter");
 const signUpRouter = require("./routes/signUpRouter");
+const userRouter = require("./routes/userRouter");
 
 app.use("/api/signin", signInRouter);
 app.use("/api/signup", signUpRouter);
+app.use("/api/user", auth, userRouter);
 
 app.post("/", auth, (req, res) => {
   res.status(200).send("Authenticated");
