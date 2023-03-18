@@ -2,17 +2,13 @@ const connection = require("../config/database");
 const bcrypt = require("bcryptjs");
 
 function signUp(req, res) {
-  const {
-    firstName,
-    lastName,
-    email,
-    phone,
-    password,
-    parkingLotID,
-    organizationName,
-    organizationAddress,
-    timeStamp,
-  } = req.body;
+  const { firstName, lastName, email, phone, password, timeStamp } = req.body;
+
+  let { parkingLotID, organizationName, organizationAddress } = req.body;
+
+  parkingLotID === "" ? (parkingLotID = null) : parkingLotID;
+  organizationName === "" ? (organizationName = null) : organizationName;
+  organizationAddress === "" ? (organizationAddress = null) : organizationAddress;
 
   res.setHeader("Content-Type", "application/json");
 
