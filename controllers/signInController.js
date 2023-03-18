@@ -28,8 +28,13 @@ function signIn(req, res) {
           } else if (isMatch) {
             const token = jwt.sign(
               {
-                id: user.id,
+                firstName: user.firstName,
+                lastName: user.lastName,
                 email: user.email,
+                phone: user.phone,
+                parkingLotID: user.parkingLotID,
+                organizationName: user.organizationName,
+                organizationAddress: user.organizationAddress,
               },
               JWT_SECRET,
               { expiresIn: "1h" }
