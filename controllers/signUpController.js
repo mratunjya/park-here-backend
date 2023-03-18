@@ -25,7 +25,7 @@ function signUp(req, res) {
     } else {
       if (result.length > 0) {
         // User already exists in the database
-        res.status(400).json({ message: "User already exists" });
+        res.status(200).json({ message: "User already exists" });
       } else {
         // User does not exist in the database, so hash the password and insert new user
         bcrypt.genSalt(10, (err, salt) => {
