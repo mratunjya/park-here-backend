@@ -13,7 +13,8 @@ function organizationNameController(req, res) {
         (item) =>
           item.organizationName !== null &&
           item.organizationName !== undefined &&
-          item.organizationName !== ""
+          item.organizationName !== "" &&
+          item.organizationName !== "null"
       );
 
       res.status(200).json({
