@@ -1,14 +1,17 @@
-const connection = require("../config/database");
+const connection = require("../../config/database");
 const bcrypt = require("bcryptjs");
 
 function signUp(req, res) {
-  const { firstName, lastName, email, phone, password, timeStamp } = req.body;
-
-  let { parkingLotID, organizationName, organizationAddress } = req.body;
-
-  parkingLotID === "" ? (parkingLotID = null) : parkingLotID;
-  organizationName === "" ? (organizationName = null) : organizationName;
-  organizationAddress === "" ? (organizationAddress = null) : organizationAddress;
+  const {
+    firstName,
+    lastName,
+    email,
+    phone,
+    password,
+    organizationName,
+    organizationAddress,
+    timeStamp,
+  } = req.body;
 
   res.setHeader("Content-Type", "application/json");
 
@@ -21,7 +24,7 @@ function signUp(req, res) {
     } else {
       if (result.length > 0) {
         // User already exists in the database
-        res.status(200).json({ message: "User already exists" });
+        res.status(200).json({ message: "Organization Already exists" });
       } else {
         // User does not exist in the database, so hash the password and insert new user
         bcrypt.genSalt(10, (err, salt) => {
@@ -34,8 +37,7 @@ function signUp(req, res) {
                 console.error(err);
                 res.status(500).json({ message: "Server error" });
               } else {
-                const insertQuery = `INSERT INTO users (firstName, lastName, email, phone, password, parkingLotID, organizationName, organizationAddress, timeStamp) VALUES ('${firstName}', '${lastName}', '${email}', '${phone}', '${hash}', '${parkingLotID}', '${organizationName}', '${organizationAddress}', '${timeStamp}')`;
-
+                const insertQuery = `INSERT INTO users (firstName, lastName, email, phone, password, organizationName, organizationAddress, timeStamp) VALUES ('${firstName}', '${lastName}', '${email}', '${phone}', '${hash}', '${organizationName}', '${organizationAddress}', '${timeStamp}')`;
                 connection.query(insertQuery, (err, result) => {
                   if (err) {
                     console.error(err);

@@ -39,8 +39,8 @@ const signUpRouter = require("./routes/signUpRouter");
 const organizationRouter = require("./routes/organizationRouter");
 const userRouter = require("./routes/userRouter");
 
-app.use("/api/signup", signUpRouter);
 app.use("/api/sign-in", signInRouter);
+app.use("/api/sign-up", signUpRouter);
 app.use("/api/organization", organizationRouter);
 app.use("/api/user", auth, userRouter);
 
