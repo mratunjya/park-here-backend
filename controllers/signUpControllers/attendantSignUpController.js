@@ -2,19 +2,12 @@ const connection = require("../../config/database");
 const bcrypt = require("bcryptjs");
 
 function signUp(req, res) {
-  const {
-    firstName,
-    lastName,
-    email,
-    phone,
-    password,
-    parkingLotID,
-    timeStamp,
-  } = req.body;
+  const { firstName, lastName, email, phone, password, parkingLotID } =
+    req.body;
 
   res.setHeader("Content-Type", "application/json");
 
-  const selectQuery = `SELECT * FROM users WHERE email = '${email}'`;
+  const selectQuery = `SELECT * FROM attendants WHERE email = '${email}'`;
 
   connection.query(selectQuery, (err, result) => {
     if (err) {
@@ -36,7 +29,7 @@ function signUp(req, res) {
                 console.error(err);
                 res.status(500).json({ message: "Server error" });
               } else {
-                const insertQuery = `INSERT INTO users (firstName, lastName, email, phone, password, parkingLotID, timeStamp) VALUES ('${firstName}', '${lastName}', '${email}', '${phone}', '${hash}', '${parkingLotID}', '${timeStamp}')`;
+                const insertQuery = `INSERT INTO attendants (firstName, lastName, email, phone, password, parkingLotID) VALUES ('${firstName}', '${lastName}', '${email}', '${phone}', '${hash}', '${parkingLotID}')`;
                 connection.query(insertQuery, (err, result) => {
                   if (err) {
                     console.error(err);

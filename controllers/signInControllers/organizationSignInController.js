@@ -7,7 +7,7 @@ function organizationSignIn(req, res) {
 
   res.setHeader("Content-Type", "application/json");
 
-  const query = `SELECT * FROM users WHERE email = '${email}'`;
+  const query = `SELECT * FROM organizations WHERE email = '${email}'`;
 
   connection.query(query, (err, result) => {
     if (err) {

@@ -10,12 +10,11 @@ function signUp(req, res) {
     password,
     organizationName,
     organizationAddress,
-    timeStamp,
   } = req.body;
 
   res.setHeader("Content-Type", "application/json");
 
-  const selectQuery = `SELECT * FROM users WHERE email = '${email}'`;
+  const selectQuery = `SELECT * FROM organizations WHERE email = '${email}'`;
 
   connection.query(selectQuery, (err, result) => {
     if (err) {
@@ -37,7 +36,7 @@ function signUp(req, res) {
                 console.error(err);
                 res.status(500).json({ message: "Server error" });
               } else {
-                const insertQuery = `INSERT INTO users (firstName, lastName, email, phone, password, organizationName, organizationAddress, timeStamp) VALUES ('${firstName}', '${lastName}', '${email}', '${phone}', '${hash}', '${organizationName}', '${organizationAddress}', '${timeStamp}')`;
+                const insertQuery = `INSERT INTO organizations (firstName, lastName, email, phone, password, organizationName, organizationAddress) VALUES ('${firstName}', '${lastName}', '${email}', '${phone}', '${hash}', '${organizationName}', '${organizationAddress}')`;
                 connection.query(insertQuery, (err, result) => {
                   if (err) {
                     console.error(err);

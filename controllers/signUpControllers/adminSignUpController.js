@@ -14,7 +14,7 @@ function adminSignUp(req, res) {
 
   res.setHeader("Content-Type", "application/json");
 
-  const selectQuery = `SELECT * FROM users WHERE email = '${email}'`;
+  const selectQuery = `SELECT * FROM admins WHERE email = '${email}'`;
 
   connection.query(selectQuery, (err, result) => {
     if (err) {
@@ -36,7 +36,7 @@ function adminSignUp(req, res) {
                 console.error(err);
                 res.status(500).json({ message: "Server error" });
               } else {
-                const insertQuery = `INSERT INTO users (firstName, lastName, email, phone, password, organizationName, timeStamp) VALUES ('${firstName}', '${lastName}', '${email}', '${phone}', '${hash}', '${organizationName}', '${timeStamp}')`;
+                const insertQuery = `INSERT INTO admins (firstName, lastName, email, phone, password, organizationName) VALUES ('${firstName}', '${lastName}', '${email}', '${phone}', '${hash}', '${organizationName}')`;
                 connection.query(insertQuery, (err, result) => {
                   if (err) {
                     console.error(err);

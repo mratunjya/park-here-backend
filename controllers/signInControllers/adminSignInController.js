@@ -7,7 +7,7 @@ function adminSignIn(req, res) {
 
   res.setHeader("Content-Type", "application/json");
 
-  const query = `SELECT * FROM users WHERE email = '${email}'`;
+  const query = `SELECT * FROM admins WHERE email = '${email}'`;
 
   connection.query(query, (err, result) => {
     if (err) {
