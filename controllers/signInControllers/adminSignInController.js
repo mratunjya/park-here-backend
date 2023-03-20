@@ -1,8 +1,8 @@
-const connection = require("../config/database");
+const connection = require("../../config/database");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
-function signIn(req, res) {
+function adminSignIn(req, res) {
   const { email, password } = req.body;
 
   res.setHeader("Content-Type", "application/json");
@@ -32,9 +32,7 @@ function signIn(req, res) {
                 lastName: user.lastName,
                 email: user.email,
                 phone: user.phone,
-                parkingLotID: user.parkingLotID,
                 organizationName: user.organizationName,
-                organizationAddress: user.organizationAddress,
               },
               JWT_SECRET,
               { expiresIn: "1h" }
@@ -47,9 +45,7 @@ function signIn(req, res) {
                 lastName: user.lastName,
                 email: user.email,
                 phone: user.phone,
-                parkingLotID: user.parkingLotID,
                 organizationName: user.organizationName,
-                organizationAddress: user.organizationAddress,
               },
               token: token,
             });
@@ -68,4 +64,4 @@ function signIn(req, res) {
   });
 }
 
-module.exports = signIn;
+module.exports = adminSignIn;
