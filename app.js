@@ -39,10 +39,13 @@ const signUpRouter = require("./routes/signUpRouter");
 const organizationRouter = require("./routes/organizationRouter");
 const userRouter = require("./routes/userRouter");
 
+const updateRouter = require("./routes/updateRouter");
+
 app.use("/api/sign-in", signInRouter);
-app.use("/api/sign-up", signUpRouter);
 app.use("/api/organization", organizationRouter);
+app.use("/api/sign-up", signUpRouter);
 app.use("/api/user", auth, userRouter);
+app.use("/api/update", auth, updateRouter);
 
 app.post("/", auth, (req, res) => {
   res.status(200).send("Authenticated");
