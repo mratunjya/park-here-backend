@@ -9,7 +9,6 @@ function adminSignUp(req, res) {
     phone,
     password,
     organizationName,
-    timeStamp,
   } = req.body;
 
   res.setHeader("Content-Type", "application/json");
