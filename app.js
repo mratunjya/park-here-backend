@@ -41,11 +41,14 @@ const userRouter = require("./routes/userRouter");
 
 const updateRouter = require("./routes/updateRouter");
 
+const parkingLotRouter = require("./routes/parkingLotRouter");
+
 app.use("/api/sign-in", signInRouter);
 app.use("/api/organization", organizationRouter);
 app.use("/api/sign-up", signUpRouter);
 app.use("/api/user", auth, userRouter);
 app.use("/api/update", auth, updateRouter);
+app.use("/api/parking-lots", parkingLotRouter);
 
 app.post("/", auth, (req, res) => {
   res.status(200).send("Authenticated");
