@@ -1,7 +1,7 @@
 const connection = require("../config/database");
 
 function getAllParkingLotsController(req, res) {
-  const query = `SELECT * FROM parking_lots`;
+  const query = `SELECT * FROM parking_lots where booked < total_capacity`;
 
   connection.query(query, (err, result) => {
     if (err) {
