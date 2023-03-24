@@ -13,7 +13,7 @@ function updateUser(req, res) {
 
   res.setHeader("Content-Type", "application/json");
 
-  const updateQuery = `UPDATE users SET firstName = ?, lastName = ?, phone = ?, organizationName = ?, organizationAddress = ? WHERE email = ?`;
+  const updateQuery = `UPDATE organizations SET firstName = ?, lastName = ?, phone = ?, organizationName = ?, organizationAddress = ? WHERE email = ?`;
 
   connection.query(
     updateQuery,
@@ -21,7 +21,7 @@ function updateUser(req, res) {
     (err, result) => {
       if (err) {
         console.error(err);
-        res.status(500).json({ message: "Server error" });
+        res.status(500).json({ message: "Server error" + err });
       } else {
         oldData.firstName = firstName;
         oldData.lastName = lastName;
