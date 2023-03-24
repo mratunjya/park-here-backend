@@ -1,9 +1,9 @@
 const connection = require("../config/database");
 
 function editParkingLotController(req, res) {
-  const { id, name, address, city, state, capacity } = req.body;
+  const { id, name, address, city, state, capacity, price } = req.body;
 
-  const query = `UPDATE parking_lots SET name = '${name}', address = '${address}', city = '${city}', state = '${state}', total_capacity = '${capacity}' WHERE id = '${id}'`;
+  const query = `UPDATE parking_lots SET name = '${name}', address = '${address}', city = '${city}', state = '${state}', total_capacity = '${capacity}', price = '${price}' WHERE id = '${id}'`;
 
   connection.query(query, (err, result) => {
     if (err) {
