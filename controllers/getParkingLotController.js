@@ -1,9 +1,9 @@
 const connection = require("../config/database");
 
-function addParkingLotController(req, res) {
-  const { email } = req.body;
+function getParkingLotController(req, res) {
+  const { id } = req.body;
 
-  const query = `SELECT * FROM parking_lots WHERE email = '${email}'`;
+  const query = `SELECT * FROM parking_lots WHERE id = '${id}'`;
 
   connection.query(query, (err, result) => {
     if (err) {
@@ -11,12 +11,9 @@ function addParkingLotController(req, res) {
         message: "Internal Server Error" + err,
       });
     } else {
-      res.status(200).json({
-        message: "Parking Lot Added",
-        parkingLots: result,
-      });
+      res.status(200).json(result);
     }
   });
 }
 
-module.exports = addParkingLotController;
+module.exports = getParkingLotController;
