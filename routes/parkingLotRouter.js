@@ -13,5 +13,6 @@ router.post("/edit", editParkingLotController);
 router.get("/", getAllParkingLotsController);
 router.post("/add", addParkingLotController);
 router.post("/id", getParkingLotController);
+router.post("/", getParkingLotsController);
 
 module.exports = router;
