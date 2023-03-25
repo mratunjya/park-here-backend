@@ -7,8 +7,8 @@ function bookedController(req, res) {
   FROM bookings b
   JOIN users u ON b.email = u.email
   JOIN parking_lots p ON b.parkinglot_id = p.id
-  WHERE b.parkinglot_id = ${parkingLotID}
-  ORDER BY b.time_stamp DESC
+  WHERE b.parkinglot_id = ${parkingLotID} AND b.status = 0
+  ORDER BY b.time_stamp DESC;
   `;
 
   connection.query(query, (err, result) => {
@@ -16,7 +16,20 @@ function bookedController(req, res) {
       console.log(err);
       res.status(500).send("Internal server error" + err);
     } else {
-      res.status(200).send(result);
+      if (result.length > 0) {
+        res.status(200).send(result);
+      } else {
+        const query2 = `SELECT name, address, city, state, booked, total_capacity FROM parking_lots WHERE id = ${parkingLotID}`;
+
+        connection.query(query2, (err, result) => {
+          if (err) {
+            console.log(err);
+            res.status(500).send("Internal server error" + err);
+          } else {
+            res.status(200).send(result);
+          }
+        });
+      }
     }
   });
 }
