@@ -1,4 +1,4 @@
-const connection = require("../config/database");
+const connection = require("../../config/database");
 
 function bookingController(req, res) {
   const { email, parkingLotId, timeStamp } = req.body;

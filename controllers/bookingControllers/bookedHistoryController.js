@@ -1,13 +1,13 @@
-const connection = require("../config/database");
+const connection = require("../../config/database");
 
-function bookedController(req, res) {
+function bookedHistoryController(req, res) {
   const { parkingLotID } = req.body;
 
   const query = `SELECT b.timestamp, b.booking_id, u.firstName, u.lastName, u.phone, p.name, p.address, p.city, p.state, p.booked, p.total_capacity
   FROM bookings b
   JOIN users u ON b.email = u.email
   JOIN parking_lots p ON b.parkinglot_id = p.id
-  WHERE b.parkinglot_id = ${parkingLotID} AND b.status = 0
+  WHERE b.parkinglot_id = ${parkingLotID} AND b.status = 1
   ORDER BY b.time_stamp DESC;
   `;
 
@@ -34,4 +34,4 @@ function bookedController(req, res) {
   });
 }
 
-module.exports = bookedController;
+module.exports = bookedHistoryController;
