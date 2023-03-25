@@ -3,9 +3,21 @@ const connection = require("../../config/database");
 function bookingController(req, res) {
   const { email, parkingLotId, timeStamp } = req.body;
 
-  const query = `SELECT booked, total_capacity FROM parking_lots WHERE id = ${parkingLotId}`;
+  const query1 = `SELECT price FROM parking_lots WHERE id = '${parkingLotId}'`;
 
-  connection.query(query, (err, result) => {
+  let price = 0;
+
+  connection.query(query1, (err, result) => {
+    if (err) {
+      res.status(500).send("Internal Server Error");
+    } else {
+      price = result[0].price;
+    }
+  });
+
+  const query2 = `SELECT booked, total_capacity FROM parking_lots WHERE id = ${parkingLotId}`;
+
+  connection.query(query2, (err, result) => {
     if (err) {
       res.status(500).send("Internal Server Error");
     } else {
@@ -18,7 +30,7 @@ function bookingController(req, res) {
           booked + 1
         } WHERE id = ${parkingLotId}`;
 
-        const query2 = `INSERT INTO bookings (booking_id, email, transaction_id, parkinglot_id, timestamp) VALUES (${bookingId}, '${email}', ${transactionId}, ${parkingLotId}, '${timeStamp}')`;
+        const query2 = `INSERT INTO bookings (booking_id, email, transaction_id, parkinglot_id, timestamp, price) VALUES (${bookingId}, '${email}', ${transactionId}, ${parkingLotId}, '${timeStamp}', '${price}')`;
 
         connection.query(query1, (err, result) => {
           if (err) {
