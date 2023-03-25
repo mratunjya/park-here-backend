@@ -34,17 +34,19 @@ const corsOptionsDelegate = function (req, callback) {
 app.use(cors(corsOptionsDelegate));
 
 // Routes
+const userRouter = require("./routes/userRouter");
 const signInRouter = require("./routes/signInRouter");
 const signUpRouter = require("./routes/signUpRouter");
-const userRouter = require("./routes/userRouter");
 
-const organizationRouter = require("./routes/organizationRouter");
+const reportRouter = require("./routes/reportRouter");
 
 const updateRouter = require("./routes/updateRouter");
 
+const bookingRouter = require("./routes/bookingRouter");
+
 const parkingLotRouter = require("./routes/parkingLotRouter");
 
-const bookingRouter = require("./routes/bookingRouter");
+const organizationRouter = require("./routes/organizationRouter");
 
 app.use("/api/sign-in", signInRouter);
 app.use("/api/sign-up", signUpRouter);
@@ -54,9 +56,11 @@ app.use("/api/organization", organizationRouter);
 
 app.use("/api/update", auth, updateRouter);
 
+app.use("/api/reports", auth, reportRouter);
+
 app.use("/api/bookings", auth, bookingRouter);
 
-app.use("/api/parking-lots", parkingLotRouter);
+app.use("/api/parking-lots", auth, parkingLotRouter);
 
 app.post("/", auth, (req, res) => {
   res.status(200).send("Authenticated");
