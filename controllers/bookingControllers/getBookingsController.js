@@ -4,7 +4,7 @@ function getBookingsController(req, res) {
   const { email } = req.body;
 
   // Join the bookings table with the parking_lots table on parking_lots
-  const query = `SELECT bookings.booking_id, bookings.transaction_id, bookings.parkinglot_id, bookings.timestamp, parking_lots.price, parking_lots.name, parking_lots.address, parking_lots.state, parking_lots.city 
+  const query = `SELECT bookings.booking_id, bookings.transaction_id, bookings.parkinglot_id, bookings.timestamp, bookings.price, parking_lots.name, parking_lots.address, parking_lots.state, parking_lots.city 
   FROM bookings
   INNER JOIN parking_lots ON bookings.parkinglot_id = parking_lots.id
   WHERE bookings.email = ?
