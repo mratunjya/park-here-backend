@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const getAllParkingLotsController = require("../controllers/getAllParkingLotsController");
-const deleteParkingLotController = require("../controllers/deleteParkingLotController");
-const getParkingLotsController = require("../controllers/getParkingLotsController");
-const editParkingLotController = require("../controllers/editParkingLotController");
-const addParkingLotController = require("../controllers/addParkingLotController");
-const getParkingLotController = require("../controllers/getParkingLotController");
+const getAllParkingLotsController = require("../controllers/parkingLotControllers/getAllParkingLotsController");
+const deleteParkingLotController = require("../controllers/parkingLotControllers/deleteParkingLotController");
+const getParkingLotsController = require("../controllers/parkingLotControllers/getParkingLotsController");
+const editParkingLotController = require("../controllers/parkingLotControllers/editParkingLotController");
+const addParkingLotController = require("../controllers/parkingLotControllers/addParkingLotController");
+const getParkingLotController = require("../controllers/parkingLotControllers/getParkingLotController");
 
 router.post("/delete", deleteParkingLotController);
 router.post("/edit", editParkingLotController);

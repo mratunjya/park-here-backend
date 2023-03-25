@@ -1,4 +1,4 @@
-const connection = require("../config/database");
+const connection = require("../../config/database");
 
 function addParkingLotController(req, res) {
   const { email, name, address, city, state, capacity, price } = req.body;

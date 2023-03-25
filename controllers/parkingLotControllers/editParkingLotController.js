@@ -1,4 +1,4 @@
-const connection = require("../config/database");
+const connection = require("../../config/database");
 
 function editParkingLotController(req, res) {
   const { id, name, address, city, state, capacity, price } = req.body;

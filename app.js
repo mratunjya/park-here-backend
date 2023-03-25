@@ -58,7 +58,6 @@ app.use("/api/bookings", auth, bookingRouter);
 
 app.use("/api/parking-lots", parkingLotRouter);
 
-
 app.post("/", auth, (req, res) => {
   res.status(200).send("Authenticated");
 });

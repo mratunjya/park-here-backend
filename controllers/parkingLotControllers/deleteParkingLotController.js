@@ -1,4 +1,4 @@
-const connection = require("../config/database");
+const connection = require("../../config/database");
 
 function deleteParkingLotController(req, res) {
   const { id } = req.body;
