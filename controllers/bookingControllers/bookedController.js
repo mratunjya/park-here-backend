@@ -3,11 +3,27 @@ const connection = require("../../config/database");
 function bookedController(req, res) {
   const { parkingLotID } = req.body;
 
+  const date = new Date();
+  const year = date.getFullYear();
+  const month =
+    date.getMonth() + 1 < 10
+      ? "0" + (date.getMonth() + 1)
+      : date.getMonth() + 1;
+  const day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+  const startHour = "00";
+  const startMinute = "00";
+  const startSecond = "00";
+  const endHour = "23";
+  const endMinute = "59";
+  const endSecond = "59";
+  const startDateTime = `${year}-${month}-${day} ${startHour}:${startMinute}:${startSecond}`;
+  const endDateTime = `${year}-${month}-${day} ${endHour}:${endMinute}:${endSecond}`;
+
   const query = `SELECT b.timestamp, b.booking_id, u.firstName, u.lastName, u.phone, p.name, p.address, p.city, p.state, p.booked, p.total_capacity
   FROM bookings b
   JOIN users u ON b.email = u.email
   JOIN parking_lots p ON b.parkinglot_id = p.id
-  WHERE b.parkinglot_id = ${parkingLotID} AND b.status = 0
+  WHERE b.parkinglot_id = ${parkingLotID} AND b.status = 0 AND b.time_stamp BETWEEN '${startDateTime}' AND '${endDateTime}'
   ORDER BY b.time_stamp DESC;
   `;
 
