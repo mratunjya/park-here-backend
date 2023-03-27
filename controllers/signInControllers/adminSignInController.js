@@ -35,7 +35,7 @@ function adminSignIn(req, res) {
                 organizationName: user.organizationName,
               },
               JWT_SECRET,
-              { expiresIn: "1h" }
+              { expiresIn: "365d" }
             );
 
             res.status(200).json({

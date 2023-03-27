@@ -36,7 +36,7 @@ function organizationSignIn(req, res) {
                 organizationAddress: user.organizationAddress,
               },
               JWT_SECRET,
-              { expiresIn: "1h" }
+              { expiresIn: "365d" }
             );
 
             res.status(200).json({

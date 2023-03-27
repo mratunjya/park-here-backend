@@ -34,7 +34,7 @@ function userSignIn(req, res) {
                 phone: user.phone,
               },
               JWT_SECRET,
-              { expiresIn: "1h" }
+              { expiresIn: "365d" }
             );
 
             res.status(200).json({
