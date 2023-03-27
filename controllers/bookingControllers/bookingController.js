@@ -22,7 +22,7 @@ function bookingController(req, res) {
       res.status(500).send("Internal Server Error");
     } else {
       const { booked, total_capacity } = result[0];
-      if (booked < total_capacity) {
+      if (booked <= total_capacity) {
         const bookingId = Math.floor(Math.random() * 100000000000);
         const transactionId = Math.floor(Math.random() * 100000000000000);
 
