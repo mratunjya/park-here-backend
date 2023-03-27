@@ -48,6 +48,8 @@ const parkingLotRouter = require("./routes/parkingLotRouter");
 
 const organizationRouter = require("./routes/organizationRouter");
 
+const attendantsRouter = require("./routes/attendantsRouter");
+
 app.use("/api/sign-in", signInRouter);
 app.use("/api/sign-up", signUpRouter);
 
@@ -61,6 +63,8 @@ app.use("/api/reports", auth, reportRouter);
 app.use("/api/bookings", auth, bookingRouter);
 
 app.use("/api/parking-lots", auth, parkingLotRouter);
+
+app.use("/api/attendants", auth, attendantsRouter);
 
 app.post("/", auth, (req, res) => {
   res.status(200).send("Authenticated");
