@@ -14,7 +14,7 @@ function updateAttendant(req, res) {
     (err, result) => {
       if (err) {
         console.error(err);
-        res.status(500).json({ message: "Server error" });
+        res.status(500).json("Internal Server Error" + err);
       } else {
         oldData.firstName = firstName;
         oldData.lastName = lastName;

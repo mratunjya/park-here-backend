@@ -13,7 +13,7 @@ function getBookingsController(req, res) {
 
   connection.query(query, [email], (err, result) => {
     if (err) {
-      res.status(500).json({ error: "Something went wrong" + err });
+      res.status(500).json("Something went wrong" + err);
     } else {
       res.status(200).json(result);
     }

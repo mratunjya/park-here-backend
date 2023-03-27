@@ -5,9 +5,7 @@ function getAllParkingLotsController(req, res) {
 
   connection.query(query, (err, result) => {
     if (err) {
-      res.status(500).json({
-        message: "Internal Server Error" + err,
-      });
+      res.status(500).json("Something went wrong" + err);
     } else {
       const promises = [];
       for (let i = 0; i < result.length; i++) {
@@ -49,9 +47,7 @@ function getAllParkingLotsController(req, res) {
           res.status(200).json(result);
         })
         .catch((err) => {
-          res.status(500).json({
-            message: "Internal Server Error" + err,
-          });
+          res.status(500).json("Internal Server Error" + err);
         });
     }
   });

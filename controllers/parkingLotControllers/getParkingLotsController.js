@@ -45,9 +45,7 @@ function getParkingLotsController(req, res) {
           res.status(200).json(result1);
         })
         .catch((err) => {
-          res.status(500).json({
-            message: "Internal Server Error" + err,
-          });
+          res.status(500).json("Internal Server Error" + err);
         });
     }
   });

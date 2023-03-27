@@ -21,7 +21,7 @@ function updateUser(req, res) {
     (err, result) => {
       if (err) {
         console.error(err);
-        res.status(500).json({ message: "Server error" + err });
+        res.status(500).json("Server error" + err);
       } else {
         oldData.firstName = firstName;
         oldData.lastName = lastName;

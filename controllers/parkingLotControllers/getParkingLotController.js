@@ -7,9 +7,7 @@ function getParkingLotController(req, res) {
 
   connection.query(query, (err, result) => {
     if (err) {
-      res.status(500).json({
-        message: "Internal Server Error" + err,
-      });
+      res.status(500).json("Something went wrong" + err);
     } else {
       res.status(200).json(result);
     }

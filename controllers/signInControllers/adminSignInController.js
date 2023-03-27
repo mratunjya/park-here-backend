@@ -11,9 +11,7 @@ function adminSignIn(req, res) {
 
   connection.query(query, (err, result) => {
     if (err) {
-      res.status(500).json({
-        message: "Internal Server Error" + err,
-      });
+      res.status(500).json("Internal Server Error" + err);
     } else {
       if (result.length > 0) {
         const user = result[0];
@@ -22,9 +20,7 @@ function adminSignIn(req, res) {
         // Compare the hashed password stored in the database with the hashed password generated from user input
         bcrypt.compare(password, user.password, (err, isMatch) => {
           if (err) {
-            res.status(500).json({
-              message: "Internal Server Error" + err,
-            });
+            res.status(500).json("Internal Server Error" + err);
           } else if (isMatch) {
             const token = jwt.sign(
               {
@@ -56,9 +52,7 @@ function adminSignIn(req, res) {
           }
         });
       } else {
-        res.status(401).json({
-          message: "Invalid Credentials",
-        });
+        res.status(401).json("Invalid Credentials" + err);
       }
     }
   });

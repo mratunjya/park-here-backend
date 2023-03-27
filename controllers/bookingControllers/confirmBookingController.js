@@ -9,18 +9,14 @@ function addParkingLotController(req, res) {
 
   connection.query(query, (err, result) => {
     if (err) {
-      res.status(500).json({
-        message: "Internal Server Error" + err,
-      });
+      res.status(500).json("Internal Server Error" + err);
     } else {
       if (result.length > 0) {
         const query2 = `UPDATE bookings SET status = '1' WHERE booking_id = ${bookingId} AND transaction_id = ${transactionId}`;
 
         connection.query(query2, (err, result) => {
           if (err) {
-            res.status(500).json({
-              message: "Internal Server Error" + err,
-            });
+            res.status(500).json("Internal Server Error" + err);
           } else {
             res.status(200).json({
               message: "Booking Confirmed",
@@ -28,9 +24,7 @@ function addParkingLotController(req, res) {
           }
         });
       } else {
-        res.status(404).json({
-          message: "Booking Not Found",
-        });
+        res.status(404).json("Booking Not Found");
       }
     }
   });

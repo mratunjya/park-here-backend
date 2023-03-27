@@ -5,9 +5,7 @@ function organizationNameController(req, res) {
 
   connection.query(query, (err, result) => {
     if (err) {
-      res.status(500).json({
-        message: "Internal Server Error" + err,
-      });
+      res.status(500).json("Internal Server Error" + err);
     } else {
       res.status(200).json({
         message: "Organization Names Retrieved",
