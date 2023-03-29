@@ -19,7 +19,7 @@ app.use(
   })
 );
 
-const whiteList = ["http://localhost:3000", "https://park-here.vercel.app"];
+const whiteList = ["http://localhost:3000"];
 
 const corsOptionsDelegate = function (req, callback) {
   let corsOptions;
